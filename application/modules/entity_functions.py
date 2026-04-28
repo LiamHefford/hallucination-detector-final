@@ -1,5 +1,3 @@
-import spacy
-
 def extract_entities(text, ner_model):
     """
     Extracts named entities from the provided text using the spacy library.

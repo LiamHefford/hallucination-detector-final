@@ -7,6 +7,8 @@ import modules.entity_functions as entf
 import modules.embedding_functions as embf
 
 
+# ----- Settings -----
+
 similarity_threshold = 0.70
 print_threshold = 0.70
 batch_size = 32
@@ -162,7 +164,7 @@ def display_menu():
 
 
 def view_settings():
-    """Display settings."""
+    # Display current settings
 
     au.clear_console()
     print("\n" + "-" * 40)
@@ -178,6 +180,7 @@ def view_settings():
 # ----- Main -----
 
 def main():
+    # Main program loop
 
     te_model, ner_model = load_models()
 
