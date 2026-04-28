@@ -1,10 +1,12 @@
-# hallucination-detector
+# hallucination-detector-final
+
+Copied from previous repo
+
+Requirements:
 
 Python 3.13.7
 
-
-Other requirements:
-
 pip install spacy
-
 pip install Wikipedia-API
+pip install sentence-transformers
+pip install pyfiglet
