@@ -72,7 +72,7 @@ def analyze_text(text, te_model, ner_model):
 
     # Stage 1: Extract entities
     print("\n[Stage 1] Extracting entities...\n")
-    entities = entf.extract_unique_entities(text, ner_model)
+    entities = entf.extract_entities(text, ner_model)
     print(f"Found {len(entities)} unique entities: {[e[0] for e in entities]}")
 
     if not entities:

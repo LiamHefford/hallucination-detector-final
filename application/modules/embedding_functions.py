@@ -1,7 +1,8 @@
 from sentence_transformers import util
 
 def compute_similarity_matrix(te_model, input_sentences, wiki_sentences, batch_size=32):
-    """Encode sentences and compute cosine similarity matrix."""
+    # Compute cosine similarity matrix between input sentences and wiki sentences
+
     print(f"\nEncoding {len(input_sentences)} input sentences...")
     input_embs = te_model.encode(
         input_sentences,
@@ -22,7 +23,7 @@ def compute_similarity_matrix(te_model, input_sentences, wiki_sentences, batch_s
 
 
 def analyze_similarities(sim_matrix, input_sentences, wiki_sentences, wiki_sources, similarity_threshold=0.70, print_threshold=0.70):
-    """Analyze similarity matrix and return match statistics."""
+    # Analyze the similarity matrix to find matches and print high-scoring pairs
 
     match_count = 0
     highest_sims = []
