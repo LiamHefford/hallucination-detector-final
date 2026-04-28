@@ -138,9 +138,11 @@ def analyze_text(text, te_model, ner_model):
 # ----- Menu -----
 
 def display_menu():
-    # Basic menu loop
+    # Display the main menu and return the user's choice
 
     au.clear_console()
+
+    # Display menu with Figlet header
     print("\n" + "=" * 62)
     f = Figlet(font='slant')
     print(f.renderText('Hallucination'))
@@ -153,6 +155,7 @@ def display_menu():
     print("=" * 62)
     print("")
 
+    # Menu input loop
     while True:
         try:
             choice = int(input("Enter your choice (1-3): "))
@@ -160,7 +163,7 @@ def display_menu():
                 return choice
             print("Please enter a number between 1 and 3.")
         except ValueError:
-            print("Invalid input. Please enter a number.")
+            print("Invalid input. Please enter a number between 1 and 3.")
 
 
 def view_settings():
