@@ -65,7 +65,7 @@ def print_results(results):
 
 # ----- Analysis Pipeline -----
 
-def analyze_text(text, te_model, ner_model):
+def analyse_text(text, te_model, ner_model):
     # Full analysis pipeline
 
     au.clear_console()
@@ -75,41 +75,23 @@ def analyze_text(text, te_model, ner_model):
     entities = entf.extract_entities(text, ner_model)
     print(f"Found {len(entities)} unique entities: {[e[0] for e in entities]}")
 
-    if not entities:
-        print("No entities found in text.")
-        return
-    
-    input("\nPress Enter to continue...")
-    au.clear_console()
+    au.pause()
 
     # Stage 2: Find Wikipedia pages
     print("\n[Stage 2] Searching Wikipedia...\n")
     pages = wf.find_wikipedia_pages(entities)
     print(f"\nFound {len(pages)} Wikipedia pages")
 
-    if not pages:
-        print("\nNo Wikipedia pages found for entities.")
-        return
-
     input_sentences = au.split_sentences(text)
-    if not input_sentences:
-        print("No sentences found in input text.")
-        return
     
-    input("\nPress Enter to continue...")
-    au.clear_console()
+    au.pause()
 
     # Stage 3: Collect wiki sentences
     print("\n[Stage 3] Scraping Wikipedia content...\n")
     wiki_sentences, wiki_sources = wf.collect_wiki_sentences(pages)
     print(f"\nTotal wiki sentences: {len(wiki_sentences)}")
 
-    if not wiki_sentences:
-        print("\nNo Wikipedia content to compare against.")
-        return
-
-    input("\nPress Enter to continue...")
-    au.clear_console()
+    au.pause()
 
     # Stage 4: Compute similarities
     print("\n[Stage 4] Encoding text...")
@@ -117,8 +99,7 @@ def analyze_text(text, te_model, ner_model):
         te_model, input_sentences, wiki_sentences, batch_size
     )
 
-    input("\nPress Enter to continue...")
-    au.clear_console()
+    au.pause()
 
     # Stage 5: Analyze results
     print("\n[Stage 5] Analyzing matches...")
@@ -127,8 +108,7 @@ def analyze_text(text, te_model, ner_model):
         similarity_threshold, print_threshold
     )
 
-    input("\nPress Enter to continue...")
-    au.clear_console()
+    au.pause()
 
     # Stage 6: Calculate and display results
     results = calculate_confidence(match_count, len(input_sentences), highest_sims)
@@ -202,7 +182,7 @@ def main():
             text = " ".join(lines)
 
             if text.strip():
-                analyze_text(text, te_model, ner_model)
+                analyse_text(text, te_model, ner_model)
                 input("\nPress Enter to continue...")
             else:
                 print("No text entered.")
@@ -218,3 +198,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

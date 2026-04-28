@@ -1,5 +1,6 @@
 from sentence_transformers import util
 
+
 def compute_similarity_matrix(te_model, input_sentences, wiki_sentences, batch_size=32):
     # Compute cosine similarity matrix between input sentences and wiki sentences
 

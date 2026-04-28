@@ -16,7 +16,7 @@ def extract_entities(text, ner_model):
             "ORG", "PRODUCT",
             # Art, events, laws, language
             "WORK_OF_ART", "EVENT", "LAW", "LANGUAGE",
-            # Dates and times
+            # Dates
             "DATE",
         ]:
             entities.append((ent.text, ent.label_))

@@ -1,7 +1,7 @@
 import wikipediaapi
 import re
-
 import modules.app_utils as au
+
 
 wiki = wikipediaapi.Wikipedia(user_agent='University Project (liamhefford7@gmail.com)', language='en') # Wikipedia user agent, required for scraping text via API
 

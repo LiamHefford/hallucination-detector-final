@@ -1,6 +1,7 @@
 import os
 import re
 
+
 def clear_console():
     # Clear the console based on the operating system, cls for Windows and clear for Linux
 
@@ -13,3 +14,9 @@ def split_sentences(text: str):
     if not text:
         return []
     return re.split(r'(?<=[.!?])\s+', text)
+
+def pause(prompt="\nPress Enter to continue..."):
+    # Pause for user input, then clear the console
+
+    input(prompt)
+    clear_console()
