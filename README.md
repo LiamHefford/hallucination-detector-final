@@ -6,7 +6,4 @@ Requirements:
 
 Python 3.13.7
 
-pip install spacy
-pip install Wikipedia-API
-pip install sentence-transformers
-pip install pyfiglet
+pip install spacy Wikipedia-API sentence-transformers pyfiglet
