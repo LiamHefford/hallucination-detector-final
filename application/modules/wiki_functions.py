@@ -5,23 +5,6 @@ import modules.app_utils as au
 
 wiki = wikipediaapi.Wikipedia(user_agent='University Project (liamhefford7@gmail.com)', language='en') # Wikipedia user agent, required for scraping text via API
 
-def get_title(title):
-    # Return the canonical page title for a given entity name (fixes page redirects)
-
-    page = wiki.page(title)
-    if page.exists():
-        return page.title
-    return None
-
-def scrape_page(title):
-    # Scrape the text content of a Wikipedia page by title
-
-    page = wiki.page(title)
-    if page.exists():
-        return page.text
-    else:
-        return None
-
 
 def find_wikipedia_pages(entities):
     # Find Wikipedia pages for a list of entities.
@@ -31,7 +14,8 @@ def find_wikipedia_pages(entities):
 
     for entity_name, _ in entities:
         print(f"  Searching: {entity_name}...", end=" ")
-        canonical_title = get_title(entity_name)
+        page = wiki.page(entity_name)
+        canonical_title = page.title if page.exists() else None
         if canonical_title and canonical_title not in seen_pages:
             pages.append(canonical_title)
             seen_pages.add(canonical_title)
@@ -45,14 +29,15 @@ def find_wikipedia_pages(entities):
 
 
 def collect_wiki_sentences(page_titles):
-    # Scrape text from a list of Wikipedia page titles and split into sentences, tracking sources.
+    # Scrape text from a list of Wikipedia page titles and split into sentences
 
     all_sentences = []
     sources = []
 
     for title in page_titles:
         print(f"  Scraping: {title}...", end=" ")
-        content = scrape_page(title)
+        page = wiki.page(title)
+        content = page.text if page.exists() else None
         if content:
             sentences = au.split_sentences(content)
             for s in sentences:
